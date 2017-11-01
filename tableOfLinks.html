@@ -36,18 +36,20 @@
               var caseURL;
               do{
                 caseURL = prompt("Please enter your case URL:", "");  //prompt user for URL of case Page
-              } while(!ValidURL(caseURL));                            //check if the URL is Valid
+              } while(caseURL != null && !ValidURL(caseURL));                            //check if the URL is Valid
 
-              if (!/^(f|ht)tps?:\/\//i.test(caseURL)) {               //make sure the URL contains 'https://'
-                caseURL = "https://" + caseURL;
-              }
-              var entryHTML = '<td id=IDHERE abbr="URLHERE" onmouseover="style.backgroundColor=&#39;#000000&#39;;style.cursor=&#39;pointer&#39;" onmouseout="style.backgroundColor=&#39;#336699&#39;" bgcolor="#336699" style="cursor: pointer; background-color: #336699"><p align="center"><strong><font color="#fff000" size="4">CONTRACTACTION#HERE</font></strong></p></td>';
+              if(caseURL != null){
+                if (!/^(f|ht)tps?:\/\//i.test(caseURL)) {               //make sure the URL contains 'https://'
+                  caseURL = "https://" + caseURL;
+                }
+                var entryHTML = '<td id=IDHERE abbr="URLHERE" onmouseover="style.backgroundColor=&#39;#000000&#39;;style.cursor=&#39;pointer&#39;" onmouseout="style.backgroundColor=&#39;#336699&#39;" bgcolor="#336699" style="cursor: pointer; background-color: #336699"><p align="center"><strong><font color="#fff000" size="4">CONTRACTACTION#HERE</font></strong></p></td>';
 
-              var caseID = "id" + caseNum;
-              var newEntryHTML = entryHTML.replace('CONTRACTACTION#HERE', caseNum).replace('IDHERE', caseID).replace('URLHERE', caseURL); //fill new entry with relevant info
-              $('#entryRow').append(newEntryHTML);                                                                                        //add entry to table
-              console.log(newEntryHTML);
-              setListener(caseID);                                                                                                        //attach on click listener to new entry
+                var caseID = "id" + caseNum;
+                var newEntryHTML = entryHTML.replace('CONTRACTACTION#HERE', caseNum).replace('IDHERE', caseID).replace('URLHERE', caseURL); //fill new entry with relevant info
+                $('#entryRow').append(newEntryHTML);                                                                                        //add entry to table
+                console.log(newEntryHTML);
+                setListener(caseID);
+              }                                                                                //attach on click listener to new entry
             }
         });
     });
